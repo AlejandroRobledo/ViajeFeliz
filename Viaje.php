@@ -1,75 +1,93 @@
 <?php
 
-class Viaje {
+class Viaje
+{
+    // atributos
+    private $coleccionPasajeros;
+    private $codigo;
+    private $destino;
+    private $cantPasajeros;
+    private $objResp;
 
-private $coleccionPasajeros;
-private $codigo;
-private $cantMaxPasajeros;
-private $destino;
-private $cantPasajeros;
+    // constructores
+    function __construct($coleccionPasajeros, $codigo, $destino, $cantPasajeros, $objResp)
+    {
+        $this->coleccionPasajeros = $coleccionPasajeros;
+        $this->codigo = $codigo;
+        $this->destino = $destino;
+        $this->cantPasajeros = $cantPasajeros;
+        $this->objResp = $objResp;
+    }
 
-function __construct($coleccionPasajeros,$codigo,$destino,$cantPasajeros){
-    
-    $this->coleccionPasajeros=$coleccionPasajeros;
-    $this->codigo=$codigo;
-    $this->destino=$destino;
-    $this->cantPasajeros=$cantPasajeros;    
-}
+    // getters
 
-function getColeccionPasajeros(){
+    public function getObjResp() : ResponsableV
+    {
+        return $this->objResp;
+    }
 
-    return $this->coleccionPasajeros;
-}
+    public function getColeccionPasajeros() : array
+    {
+        return $this->coleccionPasajeros;
+    }
 
-function getCodigo(){
+    public function getCodigo() : int
+    {
+        return $this->codigo;
+    }
 
-    return $this->codigo;
-}
+    public function getDestino() : string
+    {
+        return $this->destino;
+    }
 
-function getDestino(){
-
-    return $this->destino;
-}
-
-function getCantPasajeros(){
-    
+    public function getCantPasajeros() : Pasajero
+    {
     return $this->cantPasajeros;
+    }
+
+    // setters
+
+    public function setColeccionPasajeros($coleccionPasajeros) : void
+    {
+        $this->coleccionPasajeros = $coleccionPasajeros;
+    }
+
+    public function setCodigo($codigo) : void
+    {
+        $this->codigo = $codigo;
+    }
+
+    public function setDestino($destino) : void
+    {
+        $this->destino = $destino;
+    }
+
+    public function setObjResp($objResp) : void
+    {
+        $this->cantPasajeros = $objResp;
+    }
+
+    public function setCantPasajeros($cantPasajeros) : void
+    {
+        $this->cantPasajeros = $cantPasajeros;
+    }
+
+    // propias del tipo
+
+    public function __toString() : string
+    {
+        return " \n codigo: " . $this->getCodigo() . "\n destino: " . $this->getDestino() .
+            "\n coleccion_pasajeros " . $this->mostrarDatosPasajeros() . "/n Responsable del viaje: " . $this->getObjResp();
+    }
+
+    /**
+     * Esta funcion muestra por pantalla la coleccion objetos pasajero
+     */
+    public function mostrarDatosPasajeros() : void
+    {
+        for ($i = 0; $i < count($this->coleccionPasajeros); $i++) {
+            echo "Pasajero " . ($i + 1) . " : " . $this->coleccionPasajeros[$i];
+        }
+    } 
 }
-
-function setColeccionPasajeros($coleccionPasajeros){
-
-    $this->coleccionPasajeros=$coleccionPasajeros;
-}
-
-function setCodigo($codigo){
-
-    $this->codigo=$codigo;
-}
-
-
-function setDestino($destino){
-
-    $this->destino=$destino;
-}
-
-function setCantPasajeros($cantPasajeros){
-    $this->cantPasajeros=$cantPasajeros;
-}
-
-function __toString(){
-
-    return " \n codigo: ".$this->getCodigo()."\n destino: ".$this->getDestino(). "\n coleccion_pasajeros ".$this->getColeccionPasajeros();
-}
-
-/*Esta funcion recibe como parametro datos de un pasajero y retorna un arreglo de dichos pasajeros*/
-function pasajeros (string $nombre,$apellido,int $dni){
-
-$arrayPasajeros=["nombre"=>$nombre,"apellido"=>$apellido,"dni"=>$dni];
-
-return $arrayPasajeros;
-}
-
-
-
-}
-
